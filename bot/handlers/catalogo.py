@@ -14,7 +14,7 @@ async def catalogo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.callback_query.message.reply_text(
         "🛒 *Catálogo de Métodos Atuais*\n\n"
         "Nossos métodos são atualizados semanalmente e passam por verificação manual.\n"
-        "Escolha abaixo a categoria que mais se encaixa no que você procura.",
+        "Escolha abaixo a categoria que mais se encaixa no que você procura:",
         parse_mode='Markdown',
         reply_markup=markup
     )

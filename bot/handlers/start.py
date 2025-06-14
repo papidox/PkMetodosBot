@@ -1,6 +1,6 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
-from bot.handlers import catalogo, metodos, prints_carrossel, suporte
+from bot.handlers import catalogo, metodos, prints_carrossel, suporte, perfil, admin
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
@@ -29,4 +29,19 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-    await start(update, context)
+    data = query.data
+
+    if data == "catalogo":
+        await catalogo.catalogo(update, context)
+    elif data == "metodos":
+        await metodos.metodos(update, context)
+    elif data == "prints":
+        await prints_carrossel.prints_menu(update, context)
+    elif data == "suporte":
+        await suporte.suporte(update, context)
+    elif data == "perfil":
+        await perfil.perfil(update, context)
+    elif data == "admin_painel":
+        await admin.painel_admin(update, context)
+    elif data == "voltar_menu":
+        await start(update, context)
