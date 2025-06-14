@@ -1,10 +1,13 @@
 
-# main.py
-from telegram.ext import ApplicationBuilder, CommandHandler
-from bot.handlers.start import start
+import os
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
+from bot.handlers import start
 
-app = ApplicationBuilder().token("7565675198:AAFTGLzXZa88KRxBmjob4fMDuP2tUrt6Dvg").build()
-app.add_handler(CommandHandler("start", start))
+token = os.getenv("BOT_TOKEN")
+app = ApplicationBuilder().token(token).build()
 
-print("Bot rodando...")
+app.add_handler(CommandHandler("start", start.start))
+app.add_handler(CallbackQueryHandler(start.menu_callback))
+
+print("Bot está rodando...")
 app.run_polling()
