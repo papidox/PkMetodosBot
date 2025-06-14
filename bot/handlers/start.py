@@ -28,4 +28,4 @@ async def menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif query.data == "suporte":
         await suporte.suporte(update, context)
     else:
-        await query.edit_message_text(text=f"Você clicou: {query.data}")
+        await query.edit_message_text(text="Função ainda não implementada.")
