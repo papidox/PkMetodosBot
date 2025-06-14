@@ -1,6 +1,7 @@
 
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
+from bot.handlers import catalogo, metodos, provas, suporte
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
@@ -11,9 +12,20 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("🔔 Últimas Ativações", url='https://t.me/PkMetodosAvisos')]
     ]
     markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text("🔰 Bem-vindo! Escolha uma opção:", reply_markup=markup)
+    chat_id = update.effective_chat.id
+    await context.bot.send_message(chat_id=chat_id, text="🔰 Bem-vindo! Escolha uma opção:", reply_markup=markup)
 
 async def menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-    await query.edit_message_text(text=f"Você clicou: {query.data}")
+
+    if query.data == "catalogo":
+        await catalogo.catalogo(update, context)
+    elif query.data == "metodos":
+        await metodos.metodos(update, context)
+    elif query.data == "provas":
+        await provas.provas(update, context)
+    elif query.data == "suporte":
+        await suporte.suporte(update, context)
+    else:
+        await query.edit_message_text(text="Função ainda não implementada.")
