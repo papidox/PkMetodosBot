@@ -3,7 +3,7 @@ import os
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
 from bot.handlers import start
 
-token = os.getenv("7565675198:AAFTGLzXZa88KRxBmjob4fMDuP2tUrt6Dvg")
+token = os.getenv("BOT_TOKEN")
 app = ApplicationBuilder().token(token).build()
 
 app.add_handler(CommandHandler("start", start.start))
