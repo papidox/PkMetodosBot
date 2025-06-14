@@ -1,1 +1,0 @@
-pix_keys = ['pix@1.com', 'pix@2.com', 'pix@3.com']

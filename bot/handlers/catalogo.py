@@ -11,4 +11,16 @@ async def catalogo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("💸 Premiums", callback_data="cat_premium")]
     ]
     markup = InlineKeyboardMarkup(keyboard)
-    await update.callback_query.message.reply_text("📦 Escolha uma categoria de métodos:", reply_markup=markup)
+    await update.callback_query.message.reply_text(
+        "🛒 *Catálogo de Métodos Atuais*
+
+"
+        "Nossos métodos são atualizados semanalmente e passam por verificação manual.
+"
+        "Escolha abaixo a categoria que mais se encaixa no que você procura.
+
+"
+        "_Clique na categoria para visualizar os métodos disponíveis._",
+        parse_mode='Markdown',
+        reply_markup=markup
+    )
